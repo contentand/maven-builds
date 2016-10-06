@@ -12,33 +12,37 @@
     <artifactId>exec</artifactId>
 
     <properties>
-        <main>com.dy.maven.Boot</main>
+        <exec.main>com.dy.maven.Boot</exec.main>
+        <exec.args>Peter</exec.args>
     </properties>
 
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.5.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${main}</mainClass>
-                    <arguments>
-                        <argument>Peter</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <profiles>
+        <profile>
+            <id>executable</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.5.0</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>${exec.main}</mainClass>
+                            <commandlineArgs>${exec.args}</commandlineArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
