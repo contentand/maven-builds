@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- TABLES -->
+
+    <changeSet id="0.2T1" author="daniil.yurov">
+        <comment>Table update: user(... + enabled).</comment>
+        <addColumn tableName="user">
+            <column name="enabled" type="boolean" defaultValueBoolean="true"/>
+        </addColumn>
+    </changeSet>
+
+    <!-- CONSTRAINTS -->
+
+    <!-- DATA -->
+
+    <changeSet id="0.2D1" author="daniil.yurov">
+        <comment>Data inserted into user, role.</comment>
+        <insert tableName="user">
+            <column name="username" value="artem.pryzhkov"/>
+            <column name="password" value="awesome_password"/>
+        </insert>
+        <insert tableName="role">
+            <column name="username" value="artem.pryzhkov"/>
+            <column name="role" value="BUSINESS-PARTNER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="username" value="artem.pryzhkov"/>
+            <column name="role" value="ASSOCIATE"/>
+        </insert>
+        <insert tableName="role">
+            <column name="username" value="artem.pryzhkov"/>
+            <column name="role" value="INVESTOR"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <!-- TABLES -->
+
+    <changeSet id="0.1T1" author="daniil.yurov">
+        <comment>Table created: user(username, password).</comment>
+        <createTable tableName="user">
+            <column name="username" type="VARCHAR(100)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="password" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0.1T2" author="daniil.yurov">
+        <comment>Table created: role(id, username, role).</comment>
+        <createTable tableName="role">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- CONSTRAINTS -->
+
+    <changeSet id="0.1C1" author="daniil.yurov">
+        <comment>FK added user.username -> role.username.</comment>
+        <addForeignKeyConstraint
+                referencedTableName="user"
+                referencedColumnNames="username"
+                constraintName="FK_user_role"
+                baseTableName="role"
+                baseColumnNames="username"/>
+    </changeSet>
+
+    <!-- DATA -->
+
+    <changeSet id="0.1D1" author="daniil.yurov">
+        <comment>Data inserted into user, role.</comment>
+        <insert tableName="user">
+            <column name="username" value="daniil.yurov"/>
+            <column name="password" value="secret_password"/>
+        </insert>
+        <insert tableName="role">
+            <column name="username" value="daniil.yurov"/>
+            <column name="role" value="BOSS"/>
+        </insert>
+        <insert tableName="role">
+            <column name="username" value="daniil.yurov"/>
+            <column name="role" value="LEAD"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -43,7 +43,7 @@
                             <goal>update</goal>
                         </goals>
                         <configuration>
-                            <changeLogFile>db-migration/master.xml</changeLogFile>
+                            <changeLogFile>db-changelog/db.changelog.master.xml</changeLogFile>
                             <propertyFileWillOverride>true</propertyFileWillOverride>
                             <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                         </configuration>
